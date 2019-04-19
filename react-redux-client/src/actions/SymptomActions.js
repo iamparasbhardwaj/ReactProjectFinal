@@ -1,74 +1,74 @@
-// ./react-redux-client/src/actions/todoActions.js
+// ./react-redux-client/src/actions/SymptomActions.js
 
 const apiUrl = "/api/";
 
 export const toggleAddBook = () => {
   return {
-    type: 'TOGGLE_ADD_TODO'
+    type: 'TOGGLE_ADD_Symptom'
   }
 }
 
-export const addNewTodo = (todo) => {console.log(todo)
+export const addNewSymptom = (Symptom) => {console.log(Symptom)
   return (dispatch) => {
-    dispatch(addNewTodoRequest(todo));
+    dispatch(addNewSymptomRequest(Symptom));
     return fetch(apiUrl, {
       method:'post',
-      body: todo,
+      body: Symptom,
     }).then(response => {
       if(response.ok){
-        response.json().then(data => {console.log(data.todo);
-          dispatch(addNewTodoRequestSuccess(data.todo, data.message))
+        response.json().then(data => {console.log(data.Symptom);
+          dispatch(addNewSymptomRequestSuccess(data.Symptom, data.message))
         })
       }
       else{
         response.json().then(error => {
-          dispatch(addNewTodoRequestFailed(error))
+          dispatch(addNewSymptomRequestFailed(error))
         })
       }
     })
   }
 }
 
-export const addNewTodoRequest = (todo) => {
+export const addNewSymptomRequest = (Symptom) => {
   return {
-    type: 'ADD_NEW_TODO_REQUEST',
-    todo
+    type: 'ADD_NEW_Symptom_REQUEST',
+    Symptom
   }
 }
 
-export const addNewTodoRequestSuccess = (todo,message) => {
+export const addNewSymptomRequestSuccess = (Symptom,message) => {
   return {
-    type: 'ADD_NEW_TODO_REQUEST_SUCCESS',
-    todo:todo,
+    type: 'ADD_NEW_Symptom_REQUEST_SUCCESS',
+    Symptom:Symptom,
     message:message
   }
 }
 
-export const addNewTodoRequestFailed = (error) => {
+export const addNewSymptomRequestFailed = (error) => {
   return {
-    type: 'ADD_NEW_TODO_REQUEST_FAILED',
+    type: 'ADD_NEW_Symptom_REQUEST_FAILED',
     error
   }
 }
 
 //Async action
-export const fetchTodos = () => {
+export const fetchSymptoms = () => {
   // Returns a dispatcher function
   // that dispatches an action at later time
   return (dispatch) => {
 
-    dispatch(fetchTodosRequest());
+    dispatch(fetchSymptomsRequest());
     // Returns a promise
     return fetch(apiUrl)
                 .then(response => {
                   if(response.ok){
                     response.json().then(data => {
-                      dispatch(fetchTodosSuccess(data.todos,data.message));
+                      dispatch(fetchSymptomsSuccess(data.Symptoms,data.message));
                     })
                   }
                   else{
                     response.json().then(error => {
-                      dispatch(fetchTodosFailed(error));
+                      dispatch(fetchSymptomsFailed(error));
                     })
                   }
                 })
@@ -77,44 +77,44 @@ export const fetchTodos = () => {
   }
 }
 
-export const fetchTodosRequest = () => {
+export const fetchSymptomsRequest = () => {
   return {
-    type:'FETCH_TODOS_REQUEST'
+    type:'FETCH_SymptomS_REQUEST'
   }
 }
 
 
 //Sync action
-export const fetchTodosSuccess = (todos,message) => {
+export const fetchSymptomsSuccess = (Symptoms,message) => {
   return {
-    type: 'FETCH_TODOS_SUCCESS',
-    todos: todos,
+    type: 'FETCH_SymptomS_SUCCESS',
+    Symptoms: Symptoms,
     message: message,
     receivedAt: Date.now
   }
 }
 
-export const fetchTodosFailed = (error) => {
+export const fetchSymptomsFailed = (error) => {
   return {
-    type:'FETCH_TODOS_FAILED',
+    type:'FETCH_SymptomS_FAILED',
     error
   }
 }
 
-export const fetchTodoById = (todoId) => {
+export const fetchSymptomById = (SymptomId) => {
   return (dispatch) => {
-    dispatch(fetchTodoRequest());
+    dispatch(fetchSymptomRequest());
       // Returns a promise
-      return fetch(apiUrl + todoId)
+      return fetch(apiUrl + SymptomId)
              .then(response => {console.log(response)
                if(response.ok){
                  response.json().then(data => {
-                   dispatch(fetchTodoSuccess(data.todo[0], data.message));
+                   dispatch(fetchSymptomSuccess(data.Symptom[0], data.message));
                  })
                }
                else{
                  response.json().then(error => {
-                   dispatch(fetchTodoFailed(error));
+                   dispatch(fetchSymptomFailed(error));
                  })
                }
              })
@@ -122,34 +122,34 @@ export const fetchTodoById = (todoId) => {
   }
 }
 
-export const fetchTodoRequest = () => {
+export const fetchSymptomRequest = () => {
   return {
-    type:'FETCH_TODO_REQUEST'
+    type:'FETCH_Symptom_REQUEST'
   }
 }
 
 
 //Sync action
-export const fetchTodoSuccess = (todo,message) => {
+export const fetchSymptomSuccess = (Symptom,message) => {
   return {
-    type: 'FETCH_TODO_SUCCESS',
-    todo: todo,
+    type: 'FETCH_Symptom_SUCCESS',
+    Symptom: Symptom,
     message: message,
     receivedAt: Date.now
   }
 }
 
-export const fetchTodoFailed = (error) => {
+export const fetchSymptomFailed = (error) => {
   return {
-    type:'FETCH_TODO_FAILED',
+    type:'FETCH_Symptom_FAILED',
     error
   }
 }
 
-export const showEditModal = (todoToEdit) => {
+export const showEditModal = (SymptomToEdit) => {
   return {
     type:'SHOW_EDIT_MODAL',
-    todo:todoToEdit
+    Symptom:SymptomToEdit
   }
 }
 
@@ -159,63 +159,63 @@ export const hideEditModal = () => {
   }
 }
 
-export const editTodo = (todo) => {
+export const editSymptom = (Symptom) => {
     return (dispatch) => {
-      dispatch(editTodoRequest(todo));
+      dispatch(editSymptomRequest(Symptom));
       return fetch(apiUrl, {
         method:'put',
-        body:todo
+        body:Symptom
       }).then(response => {
         if(response.ok){
           response.json().then(data => {
-            dispatch(editTodoSuccess(data.todo,data.message));
+            dispatch(editSymptomSuccess(data.Symptom,data.message));
           })
         }
         else{
           response.json().then(error => {
-            dispatch(editTodoFailed(error));
+            dispatch(editSymptomFailed(error));
           })
         }
       })
     }
 }
 
-export const editTodoRequest = (todo) => {
+export const editSymptomRequest = (Symptom) => {
    return {
-     type:'EDIT_TODO_REQUEST',
-     todo
+     type:'EDIT_Symptom_REQUEST',
+     Symptom
    }
 }
 
-export const editTodoSuccess = (todo,message) => {
+export const editSymptomSuccess = (Symptom,message) => {
   return {
-    type:'EDIT_TODO_SUCCESS',
-    todo:todo,
+    type:'EDIT_Symptom_SUCCESS',
+    Symptom:Symptom,
     message:message
   }
 }
 
-export const editTodoFailed = (error) => {
+export const editSymptomFailed = (error) => {
   return {
-    type:'EDIT_TODO_FAILED',
+    type:'EDIT_Symptom_FAILED',
     error
   }
 }
 
-export const deleteTodo = (todo) => {
+export const deleteSymptom = (Symptom) => {
   return (dispatch) => {
-    dispatch(deleteTodoRequest(todo));
-    return fetch(apiUrl + todo._id ,{
+    dispatch(deleteSymptomRequest(Symptom));
+    return fetch(apiUrl + Symptom._id ,{
       method:'delete'
     }).then(response => {
       if(response.ok){
         response.json().then(data => {
-          dispatch(deleteTodoSuccess(data.message));
+          dispatch(deleteSymptomSuccess(data.message));
         })
       }
       else{
         response.json().then(error => {
-          dispatch(deleteTodoFailed(error));
+          dispatch(deleteSymptomFailed(error));
         })
       }
     })
@@ -223,31 +223,31 @@ export const deleteTodo = (todo) => {
   }
 }
 
-export const deleteTodoRequest = (todo) => {
+export const deleteSymptomRequest = (Symptom) => {
    return {
-     type:'DELETE_TODO_REQUEST',
-     todo
+     type:'DELETE_Symptom_REQUEST',
+     Symptom
    }
 }
 
-export const deleteTodoSuccess = (message) => {
+export const deleteSymptomSuccess = (message) => {
   return {
-    type:'DELETE_TODO_SUCCESS',
+    type:'DELETE_Symptom_SUCCESS',
     message:message
   }
 }
 
-export const deleteTodoFailed = (error) => {
+export const deleteSymptomFailed = (error) => {
   return {
-    type:'DELETE_TODO_FAILED',
+    type:'DELETE_Symptom_FAILED',
     error
   }
 }
 
-export const showDeleteModal = (todoToDelete) => {
+export const showDeleteModal = (SymptomToDelete) => {
   return {
     type:'SHOW_DELETE_MODAL',
-    todo:todoToDelete
+    Symptom:SymptomToDelete
   }
 }
 

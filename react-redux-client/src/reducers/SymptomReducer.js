@@ -1,307 +1,307 @@
-// ./react-redux-client/src/reducers/todoReducer.js
+// ./react-redux-client/src/reducers/SymptomReducer.js
 const INITIAL_STATE = {
-  todos:[],
-  todo:null,
+  Symptoms:[],
+  Symptom:null,
   isFetching: false,
   error: null,
   successMsg:null,
   showDeleteModal: false,
-  todoToDelete: null,
+  SymptomToDelete: null,
   showEditModal: false,
-  todoToEdit: null,
-  newTodo: null
+  SymptomToEdit: null,
+  newSymptom: null
 }
 
-export  const todoReducer = (currentState = INITIAL_STATE, action) => {
+export  const SymptomReducer = (currentState = INITIAL_STATE, action) => {
   switch (action.type) {
-    case 'FETCH_TODOS_REQUEST':
+    case 'FETCH_SymptomS_REQUEST':
           return {
             ...currentState,
-            todos:[],
-            todo:null,
+            Symptoms:[],
+            Symptom:null,
             isFetching: true,
             error: null,
             successMsg:null,
             showDeleteModal: false,
-            todoToDelete: null,
+            SymptomToDelete: null,
             showEditModal: false,
-            todoToEdit: null,
+            SymptomToEdit: null,
           }
 
-    case 'FETCH_TODOS_SUCCESS':
+    case 'FETCH_SymptomS_SUCCESS':
           return {
             ...currentState,
-            todos:action.todos,
-            todo:null,
+            Symptoms:action.Symptoms,
+            Symptom:null,
             isFetching: false,
             error: null,
             successMsg:action.message,
             showDeleteModal: false,
-            todoToDelete: null,
+            SymptomToDelete: null,
             showEditModal: false,
-            todoToEdit: null,
+            SymptomToEdit: null,
           }
 
-    case 'FETCH_TODOS_FAILED':
+    case 'FETCH_SymptomS_FAILED':
           return {
             ...currentState,
-            todos:[],
-            todo:null,
+            Symptoms:[],
+            Symptom:null,
             isFetching: false,
             error: action.error,
             successMsg:null,
             showDeleteModal: false,
-            todoToDelete: null,
+            SymptomToDelete: null,
             showEditModal: false,
-            todoToEdit: null,
+            SymptomToEdit: null,
           }
 
-    case 'FETCH_TODO_REQUEST':
+    case 'FETCH_Symptom_REQUEST':
           return {
             ...currentState,
-            todos:currentState.todos,
-            todo:null,
+            Symptoms:currentState.Symptoms,
+            Symptom:null,
             isFetching: true,
             error: null,
             successMsg:null,
             showDeleteModal: false,
-            todoToDelete: null,
+            SymptomToDelete: null,
             showEditModal: false,
-            todoToEdit: null,
+            SymptomToEdit: null,
           }
 
-    case 'FETCH_TODO_SUCCESS':
+    case 'FETCH_Symptom_SUCCESS':
           return {
             ...currentState,
-            todos:currentState.todos,
-            todo:action.todo,
+            Symptoms:currentState.Symptoms,
+            Symptom:action.Symptom,
             isFetching: false,
             error: null,
             successMsg:action.message,
             showDeleteModal: false,
-            todoToDelete: null,
+            SymptomToDelete: null,
             showEditModal: false,
-            todoToEdit: null,
+            SymptomToEdit: null,
           }
 
-    case 'FETCH_TODO_FAILED':
+    case 'FETCH_Symptom_FAILED':
           return {
             ...currentState,
-            todos:[],
-            todo:null,
+            Symptoms:[],
+            Symptom:null,
             isFetching: false,
             error: action.error,
             successMsg:null,
             showDeleteModal: false,
-            todoToDelete: null,
+            SymptomToDelete: null,
             showEditModal: false,
-            todoToEdit: null,
+            SymptomToEdit: null,
           }
 
-    case 'ADD_NEW_TODO_REQUEST':
+    case 'ADD_NEW_Symptom_REQUEST':
           return {
             ...currentState,
-            todos:currentState.todos,
-            todo:null,
+            Symptoms:currentState.Symptoms,
+            Symptom:null,
             isFetching: true,
             error: null,
             successMsg:null,
             showDeleteModal: false,
-            todoToDelete: null,
+            SymptomToDelete: null,
             showEditModal: false,
-            todoToEdit: null,
-            newTodo: action.todo
+            SymptomToEdit: null,
+            newSymptom: action.Symptom
           }
 
-    case 'ADD_NEW_TODO_REQUEST_FAILED':
+    case 'ADD_NEW_Symptom_REQUEST_FAILED':
           return {
             ...currentState,
-            todos:currentState.todos,
-            todo:null,
+            Symptoms:currentState.Symptoms,
+            Symptom:null,
             isFetching: true,
             error: action.error,
             successMsg:null,
             showDeleteModal: false,
-            todoToDelete: null,
+            SymptomToDelete: null,
             showEditModal: false,
-            todoToEdit: null,
-            newTodo: null
+            SymptomToEdit: null,
+            newSymptom: null
           }
 
-    case 'ADD_NEW_TODO_REQUEST_SUCCESS':
+    case 'ADD_NEW_Symptom_REQUEST_SUCCESS':
           const nextState =  {
             ...currentState,
-            todos:[...currentState.todos, action.todo],
-            todo:null,
+            Symptoms:[...currentState.Symptoms, action.Symptom],
+            Symptom:null,
             isFetching: false,
             error: null,
             successMsg:action.message,
             showDeleteModal: false,
-            todoToDelete: null,
+            SymptomToDelete: null,
             showEditModal: false,
-            todoToEdit: null,
-            newTodo: action.todo
+            SymptomToEdit: null,
+            newSymptom: action.Symptom
           }
         return nextState;
 
   case 'SHOW_EDIT_MODAL':
         return {
           ...currentState,
-          todos:currentState.todos,
-          todo:null,
+          Symptoms:currentState.Symptoms,
+          Symptom:null,
           isFetching: false,
           error: null,
           successMsg:null,
           showDeleteModal: false,
-          todoToDelete: null,
+          SymptomToDelete: null,
           showEditModal: true,
-          todoToEdit: action.todo,
-          newTodo: null
+          SymptomToEdit: action.Symptom,
+          newSymptom: null
         }
 
   case 'HIDE_EDIT_MODAL':
         return {
           ...currentState,
-          todos:currentState.todos,
-          todo:null,
+          Symptoms:currentState.Symptoms,
+          Symptom:null,
           isFetching: false,
           error: null,
           successMsg:null,
           showDeleteModal: false,
-          todoToDelete: null,
+          SymptomToDelete: null,
           showEditModal: false,
-          todoToEdit: null,
-          newTodo: null
+          SymptomToEdit: null,
+          newSymptom: null
         }
 
-    case 'EDIT_TODO_REQUEST':
+    case 'EDIT_Symptom_REQUEST':
           return {
             ...currentState,
-            todos:currentState.todos,
-            todo:null,
+            Symptoms:currentState.Symptoms,
+            Symptom:null,
             isFetching: true,
             error: null,
             successMsg:null,
             showDeleteModal: false,
-            todoToDelete: null,
+            SymptomToDelete: null,
             showEditModal: true,
-            todoToEdit: action.todo,
-            newTodo: null
+            SymptomToEdit: action.Symptom,
+            newSymptom: null
           }
 
-    case 'EDIT_TODO_SUCCESS':
-         const updatedTodos = currentState.todos.map((todo) => {
-           if(todo._id !== action.todo._id){
+    case 'EDIT_Symptom_SUCCESS':
+         const updatedSymptoms = currentState.Symptoms.map((Symptom) => {
+           if(Symptom._id !== action.Symptom._id){
              //This is not the item we care about, keep it as is
-             return todo;
+             return Symptom;
            }
            //Otherwise, this is the one we want to return an updated value
-           return { ...todo, ...action.todo }
+           return { ...Symptom, ...action.Symptom }
          })
           return {
             ...currentState,
-            todos:updatedTodos,
-            todo:null,
+            Symptoms:updatedSymptoms,
+            Symptom:null,
             isFetching: false,
             error: null,
             successMsg:action.message,
             showDeleteModal: false,
-            todoToDelete: null,
+            SymptomToDelete: null,
             showEditModal: true,
-            todoToEdit: action.todo,
-            newTodo: null
+            SymptomToEdit: action.Symptom,
+            newSymptom: null
           }
 
-  case 'EDIT_TODO_FAILED':
+  case 'EDIT_Symptom_FAILED':
         return {
           ...currentState,
-          todos:currentState.todos,
-          todo:null,
+          Symptoms:currentState.Symptoms,
+          Symptom:null,
           isFetching: false,
           error: action.error,
           successMsg:null,
           showDeleteModal: false,
-          todoToDelete: null,
+          SymptomToDelete: null,
           showEditModal: true,
-          todoToEdit: currentState.todoToEdit,
-          newTodo: null
+          SymptomToEdit: currentState.SymptomToEdit,
+          newSymptom: null
         }
 
-  case 'DELETE_TODO_REQUEST':
+  case 'DELETE_Symptom_REQUEST':
         return {
           ...currentState,
-          todos:currentState.todos,
-          todo:null,
+          Symptoms:currentState.Symptoms,
+          Symptom:null,
           isFetching: true,
           error: null,
           successMsg:null,
           showDeleteModal: true,
-          todoToDelete: action.todo,
+          SymptomToDelete: action.Symptom,
           showEditModal: false,
-          todoToEdit: null,
-          newTodo: null
+          SymptomToEdit: null,
+          newSymptom: null
         }
 
-  case 'DELETE_TODO_SUCCESS':
-  const filteredTodos = currentState.todos.filter((todo) => todo._id !== currentState.todoToDelete._id)
+  case 'DELETE_Symptom_SUCCESS':
+  const filteredSymptoms = currentState.Symptoms.filter((Symptom) => Symptom._id !== currentState.SymptomToDelete._id)
         return {
           ...currentState,
-          todos:filteredTodos,
-          todo:null,
+          Symptoms:filteredSymptoms,
+          Symptom:null,
           isFetching: false,
           error: null,
           successMsg:action.message,
           showDeleteModal: true,
-          todoToDelete: null,
+          SymptomToDelete: null,
           showEditModal: false,
-          todoToEdit: null,
-          newTodo: null
+          SymptomToEdit: null,
+          newSymptom: null
         }
 
 
-  case 'DELETE_TODO_FAILED':
+  case 'DELETE_Symptom_FAILED':
         return {
           ...currentState,
-          todos:currentState.todos,
-          todo:null,
+          Symptoms:currentState.Symptoms,
+          Symptom:null,
           isFetching: false,
           error: action.error,
           successMsg:null,
           showDeleteModal: true,
-          todoToDelete: null,
+          SymptomToDelete: null,
           showEditModal: false,
-          todoToEdit: null,
-          newTodo: null
+          SymptomToEdit: null,
+          newSymptom: null
         }
 
   case 'SHOW_DELETE_MODAL':
         return {
           ...currentState,
-          todos:currentState.todos,
-          todo:null,
+          Symptoms:currentState.Symptoms,
+          Symptom:null,
           isFetching: false,
           error: null,
           successMsg:null,
           showDeleteModal: true,
-          todoToDelete: action.todo,
+          SymptomToDelete: action.Symptom,
           showEditModal: false,
-          todoToEdit: null,
-          newTodo: null
+          SymptomToEdit: null,
+          newSymptom: null
         }
 
   case 'HIDE_DELETE_MODAL':
         return {
           ...currentState,
-          todos:currentState.todos,
-          todo:null,
+          Symptoms:currentState.Symptoms,
+          Symptom:null,
           isFetching: false,
           error: null,
           successMsg:null,
           showDeleteModal: false,
-          todoToDelete: null,
+          SymptomToDelete: null,
           showEditModal: false,
-          todoToEdit: null,
-          newTodo: null
+          SymptomToEdit: null,
+          newSymptom: null
         }
 
 

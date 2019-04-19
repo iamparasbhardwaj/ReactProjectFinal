@@ -8,7 +8,7 @@ import SourceMapSupport from 'source-map-support';
 import bb from 'express-busboy';
 
 // import routes
-import todoRoutes from './routes/todo.server.route';
+import SymptomRoutes from './routes/Symptom.server.route';
 
 // define our app using express
 const app = express();
@@ -36,14 +36,14 @@ const port = process.env.PORT || 3001;
 
 // connect to database
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/mern-todo-app', {
+mongoose.connect('mongodb://localhost/mern-Symptom-app', {
   useMongoClient: true,
 });
 
 // add Source Map Support
 SourceMapSupport.install();
 
-app.use('/api', todoRoutes);
+app.use('/api', SymptomRoutes);
 
 app.get('/', (req,res) => {
   return res.end('Api working');

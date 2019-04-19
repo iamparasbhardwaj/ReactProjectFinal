@@ -1,13 +1,13 @@
-// ./react-redux-client/src/containers/Todos.js
+// ./react-redux-client/src/containers/Symptoms.js
 import { connect } from 'react-redux';
-import * as todoActions from '../actions/todoActions';
-import Todos from '../components/Todos';
+import * as SymptomActions from '../actions/SymptomActions';
+import Symptoms from '../components/Symptoms';
 
 // map state from store to props
 const mapStateToProps = (state,ownProps) => {
   return {
     //you can now say this.props.mappedAppSate
-    mappedTodoState: state.todoState
+    mappedSymptomState: state.SymptomState
   }
 }
 
@@ -15,14 +15,14 @@ const mapStateToProps = (state,ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     //you can now say this.props.mappedAppActions
-    fetchTodos: () => dispatch(todoActions.fetchTodos()),
-    mappedEditTodo: todoToEdit => dispatch(todoActions.editTodo(todoToEdit)),
-    mappedshowEditModal: todoToEdit => dispatch(todoActions.showEditModal(todoToEdit)),
-    mappedhideEditModal: () => dispatch(todoActions.hideEditModal()),
-    mappedDeleteTodo: todoToDelete => dispatch(todoActions.deleteTodo(todoToDelete)),
-    mappedshowDeleteModal: todoToDelete => dispatch(todoActions.showDeleteModal(todoToDelete)),
-    mappedhideDeleteModal: () => dispatch(todoActions.hideDeleteModal())
+    fetchSymptoms: () => dispatch(SymptomActions.fetchSymptoms()),
+    mappedEditSymptom: SymptomToEdit => dispatch(SymptomActions.editSymptom(SymptomToEdit)),
+    mappedshowEditModal: SymptomToEdit => dispatch(SymptomActions.showEditModal(SymptomToEdit)),
+    mappedhideEditModal: () => dispatch(SymptomActions.hideEditModal()),
+    mappedDeleteSymptom: SymptomToDelete => dispatch(SymptomActions.deleteSymptom(SymptomToDelete)),
+    mappedshowDeleteModal: SymptomToDelete => dispatch(SymptomActions.showDeleteModal(SymptomToDelete)),
+    mappedhideDeleteModal: () => dispatch(SymptomActions.hideDeleteModal())
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Todos);
+export default connect(mapStateToProps,mapDispatchToProps)(Symptoms);

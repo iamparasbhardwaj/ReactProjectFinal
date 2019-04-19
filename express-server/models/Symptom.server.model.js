@@ -5,8 +5,8 @@ var Schema = mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  todoText: String,
-  todoDesc: String
+  SymptomText: String,
+  SymptomDesc: String
 });
 
-export default mongoose.model('Todo', Schema);
+export default mongoose.model('Symptom', Schema);

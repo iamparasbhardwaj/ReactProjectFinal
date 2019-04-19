@@ -1,40 +1,40 @@
-// ./react-redux-client/src/components/Todos.js
+// ./react-redux-client/src/components/Symptoms.js
 import React from 'react';
 import { Alert,Glyphicon,Button,Modal } from 'react-bootstrap';
 import { Link } from 'react-router';
-import TodoEditForm from './TodoEditForm';
+import SymptomEditForm from './SymptomEditForm';
 
-export default class Todos extends React.Component {
+export default class Symptoms extends React.Component {
   constructor(props){
     super(props);
     this.hideEditModal = this.hideEditModal.bind(this);
-    this.submitEditTodo = this.submitEditTodo.bind(this);
+    this.submitEditSymptom = this.submitEditSymptom.bind(this);
     this.hideDeleteModal = this.hideDeleteModal.bind(this);
-    this.cofirmDeleteTodo = this.cofirmDeleteTodo.bind(this);
+    this.cofirmDeleteSymptom = this.cofirmDeleteSymptom.bind(this);
   }
 
   componentWillMount(){
-    this.props.fetchTodos();
+    this.props.fetchSymptoms();
   }
 
 
-  showEditModal(todoToEdit){
-     this.props.mappedshowEditModal(todoToEdit);
+  showEditModal(SymptomToEdit){
+     this.props.mappedshowEditModal(SymptomToEdit);
   }
 
   hideEditModal(){
      this.props.mappedhideEditModal();
   }
 
-  submitEditTodo(e){
+  submitEditSymptom(e){
     e.preventDefault();
-    const editForm = document.getElementById('EditTodoForm');
-    if(editForm.todoText.value !== ""){
+    const editForm = document.getElementById('EditSymptomForm');
+    if(editForm.SymptomText.value !== ""){
       const data = new FormData();
       data.append('id', editForm.id.value);
-     data.append('todoText', editForm.todoText.value);
-      data.append('todoDesc', editForm.todoDesc.value);
-      this.props.mappedEditTodo(data);
+     data.append('SymptomText', editForm.SymptomText.value);
+      data.append('SymptomDesc', editForm.SymptomDesc.value);
+      this.props.mappedEditSymptom(data);
     }
     else{
       return;
@@ -46,72 +46,72 @@ export default class Todos extends React.Component {
     this.props.mappedhideDeleteModal();
   }
 
-  showDeleteModal(todoToDelete){
-    this.props.mappedshowDeleteModal(todoToDelete);
+  showDeleteModal(SymptomToDelete){
+    this.props.mappedshowDeleteModal(SymptomToDelete);
   }
 
-  cofirmDeleteTodo(){
-    this.props.mappedDeleteTodo(this.props.mappedTodoState.todoToDelete);
+  cofirmDeleteSymptom(){
+    this.props.mappedDeleteSymptom(this.props.mappedSymptomState.SymptomToDelete);
   }
 
   render(){
-    const todoState = this.props.mappedTodoState;
-    const todos = todoState.todos;
-    const editTodo = todoState.todoToEdit;
+    const SymptomState = this.props.mappedSymptomState;
+    const Symptoms = SymptomState.Symptoms;
+    const editSymptom = SymptomState.SymptomToEdit;
     return(
       <div className="col-md-12">
-      <h3 className="centerAlign">Todos</h3>
-      {!todos && todoState.isFetching &&
-        <p>Loading todos....</p>
+      <h3 className="centerAlign">Symptoms</h3>
+      {!Symptoms && SymptomState.isFetching &&
+        <p>Loading Symptoms....</p>
       }
-      {todos.length <= 0 && !todoState.isFetching &&
-        <p>No Todos Available. Add A Todo to List here.</p>
+      {Symptoms.length <= 0 && !SymptomState.isFetching &&
+        <p>No Symptoms Available. Add A Symptom to List here.</p>
       }
-      {todos && todos.length > 0 && !todoState.isFetching &&
+      {Symptoms && Symptoms.length > 0 && !SymptomState.isFetching &&
       <table className="table booksTable">
       <thead>
-       <tr><th>Todo</th><th className="textCenter">Edit</th><th className="textCenter">Delete</th><th className="textCenter">View</th></tr>
+       <tr><th>Symptom</th><th className="textCenter">Edit</th><th className="textCenter">Delete</th><th className="textCenter">View</th></tr>
       </thead>
       <tbody>
-        {todos.map((todo,i) => <tr key={i}>
-        <td>{todo.todoText}</td>
-         <td className="textCenter"><Button onClick={() => this.showEditModal(todo)} bsStyle="info" bsSize="xsmall"><Glyphicon glyph="pencil" /></Button></td>
-         <td className="textCenter"><Button onClick={() => this.showDeleteModal(todo)} bsStyle="danger" bsSize="xsmall"><Glyphicon glyph="trash" /></Button></td>
-         <td className="textCenter"><Link to={`/${todo._id}`}>View Details</Link> </td>
+        {Symptoms.map((Symptom,i) => <tr key={i}>
+        <td>{Symptom.SymptomText}</td>
+         <td className="textCenter"><Button onClick={() => this.showEditModal(Symptom)} bsStyle="info" bsSize="xsmall"><Glyphicon glyph="pencil" /></Button></td>
+         <td className="textCenter"><Button onClick={() => this.showDeleteModal(Symptom)} bsStyle="danger" bsSize="xsmall"><Glyphicon glyph="trash" /></Button></td>
+         <td className="textCenter"><Link to={`/${Symptom._id}`}>View Details</Link> </td>
          </tr> )
       }
       </tbody>
       </table>
     }
 
-    {/* Modal for editing todo */}
+    {/* Modal for editing Symptom */}
     <Modal
-      show={todoState.showEditModal}
+      show={SymptomState.showEditModal}
       onHide={this.hideEditModal}
       container={this}
       aria-labelledby="contained-modal-title"
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title">Edit Your Todo</Modal.Title>
+        <Modal.Title id="contained-modal-title">Edit Your Symptom</Modal.Title>
       </Modal.Header>
       <Modal.Body>
     <div className="col-md-12">
-    {editTodo  &&
-    <TodoEditForm todoData={editTodo} editTodo={this.submitEditTodo} />
+    {editSymptom  &&
+    <SymptomEditForm SymptomData={editSymptom} editSymptom={this.submitEditSymptom} />
     }
-    {editTodo  && todoState.isFetching &&
+    {editSymptom  && SymptomState.isFetching &&
       <Alert bsStyle="info">
   <strong>Updating...... </strong>
       </Alert>
     }
-    {editTodo  && !todoState.isFetching && todoState.error &&
+    {editSymptom  && !SymptomState.isFetching && SymptomState.error &&
       <Alert bsStyle="danger">
-  <strong>Failed. {todoState.error} </strong>
+  <strong>Failed. {SymptomState.error} </strong>
       </Alert>
     }
-    {editTodo  && !todoState.isFetching && todoState.successMsg &&
+    {editSymptom  && !SymptomState.isFetching && SymptomState.successMsg &&
       <Alert bsStyle="success">
-  Book <strong> {editTodo.todoText} </strong>{todoState.successMsg}
+  Book <strong> {editSymptom.SymptomText} </strong>{SymptomState.successMsg}
       </Alert>
     }
     </div>
@@ -121,9 +121,9 @@ export default class Todos extends React.Component {
       </Modal.Footer>
     </Modal>
 
-{/* Modal for deleting todo */}
+{/* Modal for deleting Symptom */}
     <Modal
-    show={todoState.showDeleteModal}
+    show={SymptomState.showDeleteModal}
     onHide={this.hideDeleteModal}
     container={this}
     aria-labelledby="contained-modal-title"
@@ -132,37 +132,37 @@ export default class Todos extends React.Component {
       <Modal.Title id="contained-modal-title">Delete Your Book</Modal.Title>
     </Modal.Header>
     <Modal.Body>
-    {todoState.todoToDelete && !todoState.error && !todoState.isFetching &&
+    {SymptomState.SymptomToDelete && !SymptomState.error && !SymptomState.isFetching &&
       <Alert bsStyle="warning">
- Are you sure you want to delete this todo <strong>{todoState.todoToDelete.todoText} </strong> ?
+ Are you sure you want to delete this Symptom <strong>{SymptomState.SymptomToDelete.SymptomText} </strong> ?
 </Alert>
     }
-    {todoState.todoToDelete && todoState.error &&
+    {SymptomState.SymptomToDelete && SymptomState.error &&
       <Alert bsStyle="warning">
- Failed. <strong>{todoState.error} </strong>
+ Failed. <strong>{SymptomState.error} </strong>
 </Alert>
     }
 
-    {todoState.todoToDelete && !todoState.error && todoState.isFetching &&
+    {SymptomState.SymptomToDelete && !SymptomState.error && SymptomState.isFetching &&
       <Alert bsStyle="success">
   <strong>Deleting.... </strong>
 </Alert>
     }
 
-    {!todoState.todoToDelete && !todoState.error && !todoState.isFetching&&
+    {!SymptomState.SymptomToDelete && !SymptomState.error && !SymptomState.isFetching&&
       <Alert bsStyle="success">
- Todo <strong>{todoState.successMsg} </strong>
+ Symptom <strong>{SymptomState.successMsg} </strong>
 </Alert>
     }
     </Modal.Body>
     <Modal.Footer>
-     {!todoState.successMsg && !todoState.isFetching &&
+     {!SymptomState.successMsg && !SymptomState.isFetching &&
        <div>
-       <Button onClick={this.cofirmDeleteTodo}>Yes</Button>
+       <Button onClick={this.cofirmDeleteSymptom}>Yes</Button>
        <Button onClick={this.hideDeleteModal}>No</Button>
        </div>
     }
-    {todoState.successMsg && !todoState.isFetching &&
+    {SymptomState.successMsg && !SymptomState.isFetching &&
       <Button onClick={this.hideDeleteModal}>Close</Button>
     }
     </Modal.Footer>

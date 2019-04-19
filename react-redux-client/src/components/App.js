@@ -3,32 +3,32 @@ import React from 'react';
 import { Navbar,Nav,NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import './App.css';
-import TodoForm from './TodoForm';
+import SymptomForm from './SymptomForm';
 
 export default class App extends React.Component {
   constructor(props){
     super(props);
-    this.toggleAddTodo = this.toggleAddTodo.bind(this);
-    this.addTodo = this.addTodo.bind(this);
+    this.toggleAddSymptom = this.toggleAddSymptom.bind(this);
+    this.addSymptom = this.addSymptom.bind(this);
   }
 
-  toggleAddTodo(e){
+  toggleAddSymptom(e){
     e.preventDefault();
-     this.props.mappedToggleAddTodo();
+     this.props.mappedToggleAddSymptom();
   }
 
-  addTodo(e){
+  addSymptom(e){
       e.preventDefault();
-      const form = document.getElementById('addTodoForm');
-      if(form.todoText.value !== ""  && form.todoDesc.value !== ""){
+      const form = document.getElementById('addSymptomForm');
+      if(form.SymptomText.value !== ""  && form.SymptomDesc.value !== ""){
         const data = new FormData();
-       data.append('todoText', form.todoText.value);
-        data.append('todoDesc', form.todoDesc.value);
+       data.append('SymptomText', form.SymptomText.value);
+        data.append('SymptomDesc', form.SymptomDesc.value);
         // const data = {
-        //   todoText: form.todoText.value,
-        //   todoDesc: form.todoDesc.value
+        //   SymptomText: form.SymptomText.value,
+        //   SymptomDesc: form.SymptomDesc.value
         // }
-        this.props.mappedAddTodo(data);
+        this.props.mappedAddSymptom(data);
       form.reset();
       }
       else{
@@ -43,7 +43,7 @@ export default class App extends React.Component {
       <Navbar inverse  collapseOnSelect className="customNav">
     <Navbar.Header>
       <Navbar.Brand>
-        <a href="/#">Mern Stack Todo App</a>
+        <a href="/#">Mern Stack Symptom App</a>
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
@@ -54,15 +54,15 @@ export default class App extends React.Component {
         </LinkContainer>
       </Nav>
       <Nav pullRight>
-      <LinkContainer to={{ pathname: '/', query: {  } }} onClick={this.toggleAddTodo}>
-         <NavItem eventKey={1}>Add Todo</NavItem>
+      <LinkContainer to={{ pathname: '/', query: {  } }} onClick={this.toggleAddSymptom}>
+         <NavItem eventKey={1}>Add Symptom</NavItem>
       </LinkContainer>
       </Nav>
     </Navbar.Collapse>
   </Navbar>
   <div className="container">
-  {appState.showAddTodo &&
-    <TodoForm addTodo={this.addTodo} />
+  {appState.showAddSymptom &&
+    <SymptomForm addSymptom={this.addSymptom} />
   }
   { /* Each Smaller Components */}
    {this.props.children}

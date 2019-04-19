@@ -1,25 +1,25 @@
-// ./react-redux-client/src/components/Todo.js
+// ./react-redux-client/src/components/Symptom.js
 import React from 'react';
 
-export default class Todo extends React.Component {
+export default class Symptom extends React.Component {
   componentDidMount(){
-    this.props.mappedfetchTodoById(this.props.params.id);
+    this.props.mappedfetchSymptomById(this.props.params.id);
   }
 
   render(){
-    const todoState = this.props.mappedTodoState;
+    const SymptomState = this.props.mappedSymptomState;
     return(
-      <div className="todoDetail">
-       <h2>Todo Detail</h2>
-         {!todoState.todo && todoState.isFetching &&
+      <div className="SymptomDetail">
+       <h2>Symptom Detail</h2>
+         {!SymptomState.Symptom && SymptomState.isFetching &&
            <div>
-             <p>Loading todo....</p>
+             <p>Loading Symptom....</p>
            </div>
          }
-       {todoState.todo && !todoState.isFetching &&
+       {SymptomState.Symptom && !SymptomState.isFetching &&
          <div>
-           <h3>{todoState.todo.todoText}</h3>
-           <p>{todoState.todo.todoDesc}</p>
+           <h3>{SymptomState.Symptom.SymptomText}</h3>
+           <p>{SymptomState.Symptom.SymptomDesc}</p>
          </div>
        }
       </div>

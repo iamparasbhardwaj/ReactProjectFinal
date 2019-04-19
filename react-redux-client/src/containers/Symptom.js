@@ -1,13 +1,13 @@
-// ./react-redux-client/src/containers/Todo.js
+// ./react-redux-client/src/containers/Symptom.js
 import { connect } from 'react-redux';
-import * as todoActions from '../actions/todoActions';
-import Todo from '../components/Todo';
+import * as SymptomActions from '../actions/SymptomActions';
+import Symptom from '../components/Symptom';
 
 // map state from store to props
 const mapStateToProps = (state) => {
   return {
     //you can now say this.props.mappedAppSate
-    mappedTodoState: state.todoState
+    mappedSymptomState: state.SymptomState
   }
 }
 
@@ -15,8 +15,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     //you can now say this.props.mappedAppActions
-    mappedfetchTodoById: todoId => dispatch(todoActions.fetchTodoById(todoId))
+    mappedfetchSymptomById: SymptomId => dispatch(SymptomActions.fetchSymptomById(SymptomId))
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Todo);
+export default connect(mapStateToProps,mapDispatchToProps)(Symptom);

@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 import * as appActions from '../actions/appActions';
 import App from '../components/App';
-import * as todoActions from '../actions/todoActions';
+import * as SymptomActions from '../actions/SymptomActions';
 
 // map state from store to props
 const mapStateToProps = (state) => {
@@ -16,8 +16,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     //you can now say this.props.mappedAppActions
-    mappedToggleAddTodo: () => dispatch(appActions.toggleAddTodo()),
-    mappedAddTodo: todo => dispatch(todoActions.addNewTodo(todo))
+    mappedToggleAddSymptom: () => dispatch(appActions.toggleAddSymptom()),
+    mappedAddSymptom: Symptom => dispatch(SymptomActions.addNewSymptom(Symptom))
   }
 }
 

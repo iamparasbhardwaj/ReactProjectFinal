@@ -1,18 +1,18 @@
-// ./react-redux-client/src/components/TodoForm.js
+// ./react-redux-client/src/components/SymptomForm.js
 import React from 'react';
 import { FormGroup,ControlLabel,FormControl,Button } from 'react-bootstrap';
 
-const TodoForm = (props) => {
+const SymptomForm = (props) => {
   return (
-    <form className="form form-horizontal" id="addTodoForm" onSubmit={props.addTodo}>
+    <form className="form form-horizontal" id="addSymptomForm" onSubmit={props.addSymptom}>
     <div className="row">
-    <h3 className="centerAlign">Add Your Todo</h3>
+    <h3 className="centerAlign">Add Your Symptom</h3>
     <div className="col-md-12">
     <FormGroup>
-          <ControlLabel>Todo: </ControlLabel>
+          <ControlLabel>Symptom: </ControlLabel>
             <FormControl
-              type="text" placeholder="Enter todo"
-              name="todoText"
+              type="text" placeholder="Enter Symptom"
+              name="SymptomText"
                />
         </FormGroup>
         </div>
@@ -21,7 +21,7 @@ const TodoForm = (props) => {
               <ControlLabel>Description: </ControlLabel>
                 <FormControl
                   componentClass="textarea" placeholder="Enter description"
-                  name="todoDesc"
+                  name="SymptomDesc"
                    />
             </FormGroup>
             </div>
@@ -33,4 +33,4 @@ const TodoForm = (props) => {
   );
 }
 
-export default TodoForm;
+export default SymptomForm;

@@ -1,18 +1,18 @@
-// ./react-redux-client/src/components/TodoEditForm.js
+// ./react-redux-client/src/components/SymptomEditForm.js
 import React from 'react';
 import { FormGroup,ControlLabel,FormControl,Button } from 'react-bootstrap';
 
-const TodoEditForm = (props) => {
+const SymptomEditForm = (props) => {
   return (
-    <form className="form form-horizontal" id="EditTodoForm" onSubmit={props.editTodo}>
+    <form className="form form-horizontal" id="EditSymptomForm" onSubmit={props.editSymptom}>
     <div className="row">
     <div className="col-md-12">
     <FormGroup>
-          <ControlLabel>Todo: </ControlLabel>
-          <input type="hidden" value={props.todoData._id} name="id"/>
+          <ControlLabel>Symptom: </ControlLabel>
+          <input type="hidden" value={props.SymptomData._id} name="id"/>
             <FormControl
-              type="text" placeholder="Enter todo"
-              name="todoText" defaultValue={props.todoData.todoText}
+              type="text" placeholder="Enter Symptom"
+              name="SymptomText" defaultValue={props.SymptomData.SymptomText}
                />
         </FormGroup>
         </div>
@@ -21,7 +21,7 @@ const TodoEditForm = (props) => {
               <ControlLabel>Description: </ControlLabel>
                 <FormControl
                   componentClass="textarea" placeholder="Enter description"
-                  name="todoDesc" defaultValue={props.todoData.todoDesc}
+                  name="SymptomDesc" defaultValue={props.SymptomData.SymptomDesc}
                    />
             </FormGroup>
             </div>
@@ -33,4 +33,4 @@ const TodoEditForm = (props) => {
   );
 }
 
-export default TodoEditForm;
+export default SymptomEditForm;
